@@ -22,6 +22,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix3f;
@@ -144,7 +146,7 @@ public abstract class EngineVehicle extends InventoryVehicleEntity {
         }
 
         // Engine sounds
-        if (level().isClientSide) {
+        if (level().isClientSide()) {
             engineSound += getEnginePower() * 0.25f;
             if (engineSound > 1.0f) {
                 engineSound--;
@@ -156,7 +158,7 @@ public abstract class EngineVehicle extends InventoryVehicleEntity {
         }
 
         // Fuel
-        if (fuel.length > 0 && !level().isClientSide) {
+        if (fuel.length > 0 && !level().isClientSide()) {
             float consumption = getFuelConsumption();
             consumeFuel(consumption);
         }
@@ -242,7 +244,7 @@ public abstract class EngineVehicle extends InventoryVehicleEntity {
             return false;
         }
 
-        if (level().isClientSide) {
+        if (level().isClientSide()) {
             return entityData.get(LOW_ON_FUEL);
         } else {
             boolean low = true;
@@ -262,7 +264,7 @@ public abstract class EngineVehicle extends InventoryVehicleEntity {
     }
 
     public float getFuelConsumption() {
-        return getEngineTarget() * getProperties().get(VehicleStat.FUEL) * Config.getInstance().fuelConsumption;
+        return getEngineTarget() * getProperties().get(VehicleStat.FUEL) * Config.getInstance().fuelConsumption * 5;
     }
 
     private void refuel(int i) {
@@ -275,7 +277,7 @@ public abstract class EngineVehicle extends InventoryVehicleEntity {
                 Item item = stack.getItem();
                 stack.shrink(1);
                 if (stack.isEmpty()) {
-                    Item remainingItem = item.getCraftingRemainingItem();
+                    Item remainingItem = item.getCraftingRemainder().getItem();
                     getInventory().setItem(slots.get(i).index(), remainingItem == null ? ItemStack.EMPTY : new ItemStack(remainingItem));
                 }
             } else {
@@ -300,7 +302,7 @@ public abstract class EngineVehicle extends InventoryVehicleEntity {
 
     public void setEngineTarget(float engineTarget) {
         if (getFuelUtilization() > 0 || engineTarget == 0) {
-            if (level().isClientSide) {
+            if (level().isClientSide()) {
                 if (getEngineTarget() != engineTarget) {
                     NetworkHandler.sendToServer(new EnginePowerMessage(engineTarget));
                 }
@@ -322,7 +324,7 @@ public abstract class EngineVehicle extends InventoryVehicleEntity {
         if (fuel.length == 0) {
             return 1.0f;
         }
-        if (level().isClientSide) {
+        if (level().isClientSide()) {
             return entityData.get(UTILIZATION);
         } else {
             int running = 0;
@@ -338,7 +340,7 @@ public abstract class EngineVehicle extends InventoryVehicleEntity {
     }
 
     public void emitSmokeParticle(float x, float y, float z, float nx, float ny, float nz) {
-        if (!isWithinParticleRange() || !level().isClientSide) {
+        if (!isWithinParticleRange() || !level().isClientSide()) {
             return;
         }
 
@@ -362,20 +364,20 @@ public abstract class EngineVehicle extends InventoryVehicleEntity {
     }
 
     @Override
-    protected void addAdditionalSaveData(@NotNull CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
+    protected void addAdditionalSaveData(ValueOutput output) {
+        super.addAdditionalSaveData(output);
 
         for (int i = 0; i < fuel.length; i++) {
-            tag.putInt("Fuel" + i, fuel[i]);
+            output.putInt("Fuel" + i, fuel[i]);
         }
     }
 
     @Override
-    protected void readAdditionalSaveData(@NotNull CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
+    protected void readAdditionalSaveData(ValueInput input) {
+        super.readAdditionalSaveData(input);
 
         for (int i = 0; i < fuel.length; i++) {
-            fuel[i] = tag.getInt("Fuel" + i);
+            fuel[i] = input.getIntOr("Fuel" + i, 0);
         }
     }
 

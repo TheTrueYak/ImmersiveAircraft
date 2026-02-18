@@ -5,7 +5,9 @@ import immersive_aircraft.entity.*;
 import immersive_aircraft.entity.bullet.BulletEntity;
 import immersive_aircraft.entity.bullet.TinyTNT;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -17,6 +19,7 @@ public interface Entities {
             .of(GyrodyneEntity::new, MobCategory.MISC)
             .sized(1.3f, 0.6f)
             .clientTrackingRange(12)
+            .updateInterval(2)
             .fireImmune()
     );
 
@@ -24,6 +27,7 @@ public interface Entities {
             .of(BiplaneEntity::new, MobCategory.MISC)
             .sized(1.75f, 0.85f)
             .clientTrackingRange(12)
+            .updateInterval(1) //TODO: tweak
             .fireImmune()
     );
 
@@ -31,6 +35,7 @@ public interface Entities {
             .of(AirshipEntity::new, MobCategory.MISC)
             .sized(1.5f, 3.0f)
             .clientTrackingRange(12)
+            .updateInterval(2)
             .fireImmune()
     );
 
@@ -45,6 +50,7 @@ public interface Entities {
             .of(WarshipEntity::new, MobCategory.MISC)
             .sized(5.0f, 6.5f)
             .clientTrackingRange(16)
+            .updateInterval(2)
             .fireImmune()
     );
 
@@ -59,6 +65,7 @@ public interface Entities {
             .of(BambooHopperEntity::new, MobCategory.MISC)
             .sized(3.0f, 1.5f)
             .clientTrackingRange(14)
+            .updateInterval(2)
             .fireImmune()
     );
 
@@ -83,7 +90,8 @@ public interface Entities {
     }
 
     static <T extends Entity> Supplier<EntityType<T>> register(String name, EntityType.Builder<T> builder) {
-        ResourceLocation id = Main.locate(name);
-        return Registration.register(BuiltInRegistries.ENTITY_TYPE, id, () -> builder.build(id.toString()));
+        Identifier id = Main.locate(name);
+        ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, id);
+        return Registration.register(BuiltInRegistries.ENTITY_TYPE, id, () -> builder.build(key));
     }
 }

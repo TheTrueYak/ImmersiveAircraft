@@ -12,6 +12,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.InteractionHand;
 
 public class ClientMain {
+    public static final KeyMapping.Category AIRCRAFT = KeyMapping.Category.register(Main.locate("aircraft"));
     private static int activeTicks;
 
     // This is ugly. And wrong. And bad. But it works, and I don't care enough to fix it properly.
@@ -27,7 +28,7 @@ public class ClientMain {
 
     public static void postLoad() {
         Main.messageHandler = new ClientMessageHandler();
-        Main.cameraGetter = () -> Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
+        Main.cameraGetter = () -> Minecraft.getInstance().gameRenderer.getMainCamera().position();
         Main.firstPersonGetter = () -> Minecraft.getInstance().options.getCameraType() == CameraType.FIRST_PERSON;
         Main.debouncingGetter = key -> {
             if (key == Main.Key.BOOST) {
@@ -50,7 +51,7 @@ public class ClientMain {
     public static void tick() {
         Minecraft client = Minecraft.getInstance();
 
-        Main.frameTime = client.getTimer().getGameTimeDeltaTicks();
+        Main.frameTime = client.getDeltaTracker().getGameTimeDeltaTicks();
 
         // Only tick once per tick
         if (client.level == null || client.level.getGameTime() == lastTime) {

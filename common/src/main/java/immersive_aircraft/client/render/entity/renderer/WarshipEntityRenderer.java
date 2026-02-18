@@ -1,17 +1,17 @@
 package immersive_aircraft.client.render.entity.renderer;
 
 import immersive_aircraft.Main;
+import immersive_aircraft.client.render.entity.renderer.state.VehicleEntityRenderState;
 import immersive_aircraft.client.render.entity.renderer.utils.ModelPartRenderHandler;
-import immersive_aircraft.entity.AircraftEntity;
 import immersive_aircraft.entity.WarshipEntity;
 import immersive_aircraft.resources.bbmodel.BBMesh;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import static immersive_aircraft.client.render.entity.renderer.utils.BBModelRenderer.renderSailObject;
 
-public class WarshipEntityRenderer<T extends WarshipEntity> extends AirshipEntityRenderer<T> {
-    private static final ResourceLocation ID = Main.locate("warship");
+public class WarshipEntityRenderer<T extends WarshipEntity, S extends VehicleEntityRenderState> extends AirshipEntityRenderer<T, S> {
+    private static final Identifier ID = Main.locate("warship");
 
     private final ModelPartRenderHandler<T> model = new ModelPartRenderHandler<T>()
             .add("left_balloon_colored", (model, object, vertexConsumerProvider, entity, matrixStack, light, time, modelPartRenderer) ->
@@ -32,11 +32,11 @@ public class WarshipEntityRenderer<T extends WarshipEntity> extends AirshipEntit
             .add("net", (model, object, vertexConsumerProvider, entity, matrixStack, light, time, modelPartRenderer) -> renderSailObject((BBMesh) object, matrixStack, vertexConsumerProvider, light, time, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, (float) (0.005f + entity.getSpeedVector().length() * 0.05f)));
 
     @Override
-    protected ModelPartRenderHandler<T> getModel(AircraftEntity entity) {
+    protected ModelPartRenderHandler<T> getModel(T entity) {
         return model;
     }
 
-    protected ResourceLocation getModelId() {
+    protected Identifier getModelId() {
         return ID;
     }
 

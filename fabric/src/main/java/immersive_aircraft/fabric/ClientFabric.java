@@ -37,7 +37,7 @@ public final class ClientFabric implements ClientModInitializer {
         Renderer.bootstrap();
         WeaponRendererRegistry.bootstrap();
 
-        ItemColors.ITEM_COLOR_PROVIDERS.forEach((item, itemColor) -> ColorProviderRegistry.ITEM.register(itemColor, item.get()));
+        //ItemColors.ITEM_COLOR_PROVIDERS.forEach((item, itemColor) -> ColorProviderRegistry.ITEM.register(itemColor, item.get()));
 
         KeyBindings.list.forEach(KeyBindingHelper::registerKeyBinding);
         ItemTooltipCallback.EVENT.register(this::itemTooltipCallback);

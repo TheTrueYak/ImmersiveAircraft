@@ -1,5 +1,6 @@
 package immersive_aircraft.entity;
 
+import immersive_aircraft.Main;
 import immersive_aircraft.WeaponRegistry;
 import immersive_aircraft.cobalt.network.NetworkHandler;
 import immersive_aircraft.config.Config;
@@ -22,6 +23,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.Entity;
@@ -36,6 +38,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.Fireworks;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -128,8 +132,8 @@ public abstract class InventoryVehicleEntity extends DyeableVehicleEntity implem
             boolean isCargo = slot.type().equals(VehicleInventoryDescription.INVENTORY);
             if (isCargo && Config.getInstance().dropInventory || !isCargo && Config.getInstance().dropUpgrades) {
                 ItemStack stack = getSlot(slot.index()).get();
-                if (!stack.isEmpty()) {
-                    this.spawnAtLocation(stack.copyAndClear());
+                if (!stack.isEmpty() && this.level() instanceof ServerLevel serverLevel) {
+                    this.spawnAtLocation(serverLevel, stack.copyAndClear());
                 }
             }
         }
@@ -155,7 +159,7 @@ public abstract class InventoryVehicleEntity extends DyeableVehicleEntity implem
     @Override
     public InteractionResult interact(Player player, InteractionHand hand) {
         if (getHealth() >= 1.0) {
-            if (!player.level().isClientSide && player.isSecondaryUseActive() && !isPassengerOfSameVehicle(player)) {
+            if (!player.level().isClientSide() && player.isSecondaryUseActive() && !isPassengerOfSameVehicle(player)) {
                 Entity primaryPassenger = getFirstPassenger();
                 if (primaryPassenger != null) {
                     // Kick out the first passenger
@@ -174,25 +178,24 @@ public abstract class InventoryVehicleEntity extends DyeableVehicleEntity implem
     }
 
     @Override
-    protected void addAdditionalSaveData(@NotNull CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-
-        tag.put("Inventory", getInventory().createTag(this.registryAccess()));
+    protected void addAdditionalSaveData(ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        this.inventory.save(this.inventory.getItems(), output.list("Inventory", ItemStackWithSlot.CODEC));
     }
 
     @Override
-    protected void readAdditionalSaveData(@NotNull CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
-
-        ListTag nbtList = tag.getList("Inventory", 10);
-        getInventory().fromTag(nbtList, this.registryAccess());
+    protected void readAdditionalSaveData(ValueInput input) {
+        super.readAdditionalSaveData(input);
+        this.inventory.load(input.listOrEmpty("Inventory", ItemStackWithSlot.CODEC));
     }
 
     @Override
     public void addItemTag(ItemStack stack) {
         super.addItemTag(stack);
 
-        stack.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(getInventory().getItems()));
+        if (!this.inventory.isEmpty()) {
+            stack.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(getInventory().getItems()));
+        }
     }
 
     @Override
@@ -321,7 +324,7 @@ public abstract class InventoryVehicleEntity extends DyeableVehicleEntity implem
 
     @Override
     public SlotAccess getSlot(int slot) {
-        return SlotAccess.forContainer(getInventory(), slot);
+        return SlotAccess.forListElement(getInventory().getItems(), slot);
     }
 
     public Map<Integer, List<Weapon>> getWeapons() {

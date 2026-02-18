@@ -1,16 +1,16 @@
 package immersive_aircraft.client.render.entity.renderer;
 
 import immersive_aircraft.Main;
+import immersive_aircraft.client.render.entity.renderer.state.VehicleEntityRenderState;
 import immersive_aircraft.client.render.entity.renderer.utils.ModelPartRenderHandler;
-import immersive_aircraft.entity.AircraftEntity;
 import immersive_aircraft.entity.AirshipEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
-public class AirshipEntityRenderer<T extends AirshipEntity> extends AircraftEntityRenderer<T> {
-    private static final ResourceLocation ID = Main.locate("airship");
+public class AirshipEntityRenderer<T extends AirshipEntity, S extends VehicleEntityRenderState> extends AircraftEntityRenderer<T, S> {
+    private static final Identifier ID = Main.locate("airship");
 
-    protected ResourceLocation getModelId() {
+    protected Identifier getModelId() {
         return ID;
     }
 
@@ -34,7 +34,7 @@ public class AirshipEntityRenderer<T extends AirshipEntity> extends AircraftEnti
     }
 
     @Override
-    protected ModelPartRenderHandler<T> getModel(AircraftEntity entity) {
+    protected ModelPartRenderHandler<T> getModel(T entity) {
         return model;
     }
 }

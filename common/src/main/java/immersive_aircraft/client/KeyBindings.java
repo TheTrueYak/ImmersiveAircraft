@@ -1,6 +1,7 @@
 package immersive_aircraft.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import immersive_aircraft.ClientMain;
 import immersive_aircraft.Main;
 import immersive_aircraft.config.Config;
 import net.minecraft.client.KeyMapping;
@@ -53,7 +54,7 @@ public class KeyBindings {
                 "key.immersive_aircraft." + name,
                 InputConstants.Type.KEYSYM,
                 fallback,
-                "itemGroup.immersive_aircraft.immersive_aircraft_tab"
+                ClientMain.AIRCRAFT
         );
         list.add(key);
         return key;
@@ -64,7 +65,7 @@ public class KeyBindings {
                 "key.immersive_aircraft." + name,
                 InputConstants.Type.KEYSYM,
                 code,
-                "itemGroup.immersive_aircraft.immersive_aircraft_tab"
+                ClientMain.AIRCRAFT
         );
         list.add(key);
         return key;
@@ -79,7 +80,8 @@ public class KeyBindings {
                 "key.immersive_aircraft." + name,
                 type,
                 defaultKey,
-                "itemGroup.immersive_aircraft.immersive_aircraft_tab"
+                ClientMain.AIRCRAFT
+                //"itemGroup.immersive_aircraft.immersive_aircraft_tab"
         );
         list.add(key);
         return key;

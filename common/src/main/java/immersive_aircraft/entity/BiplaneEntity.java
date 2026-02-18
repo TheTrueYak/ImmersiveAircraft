@@ -5,12 +5,15 @@ import immersive_aircraft.entity.misc.TrailDescriptor;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.joml.Matrix4f;
 
 public class BiplaneEntity extends AirplaneEntity {
     public BiplaneEntity(EntityType<? extends AircraftEntity> entityType, Level world) {
         super(entityType, world, true);
     }
+
 
     @Override
     public float getBaseTrailWidth(Matrix4f transform, int index, TrailDescriptor trail) {
@@ -35,6 +38,6 @@ public class BiplaneEntity extends AirplaneEntity {
 
     @Override
     public double getZoom() {
-        return 3.0;
+        return 2.0;
     }
 }

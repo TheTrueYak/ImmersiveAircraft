@@ -2,17 +2,17 @@ package immersive_aircraft.client.render.entity.renderer;
 
 import com.mojang.math.Axis;
 import immersive_aircraft.Main;
+import immersive_aircraft.client.render.entity.renderer.state.VehicleEntityRenderState;
 import immersive_aircraft.client.render.entity.renderer.utils.ModelPartRenderHandler;
-import immersive_aircraft.entity.AircraftEntity;
 import immersive_aircraft.entity.GyrodyneEntity;
 import immersive_aircraft.util.Utils;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
-public class GyrodyneEntityRenderer<T extends GyrodyneEntity> extends AircraftEntityRenderer<T> {
-    private static final ResourceLocation ID = Main.locate("gyrodyne");
+public class GyrodyneEntityRenderer<T extends GyrodyneEntity, S extends VehicleEntityRenderState> extends AircraftEntityRenderer<T, S> {
+    private static final Identifier ID = Main.locate("gyrodyne");
 
-    protected ResourceLocation getModelId() {
+    protected Identifier getModelId() {
         return ID;
     }
 
@@ -35,7 +35,7 @@ public class GyrodyneEntityRenderer<T extends GyrodyneEntity> extends AircraftEn
     }
 
     @Override
-    protected ModelPartRenderHandler<T> getModel(AircraftEntity entity) {
+    protected ModelPartRenderHandler<T> getModel(T entity) {
         return model;
     }
 }

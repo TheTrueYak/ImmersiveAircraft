@@ -25,9 +25,6 @@
     "modmenu": [
       "immersive_aircraft.config.ModMenuIntegration"
     ],
-    "jei_mod_plugin": [
-      "immersive_aircraft.combat.JEICCombat"
-    ],
     "rei_client": [
       "immersive_aircraft.combat.REICombat"
     ]

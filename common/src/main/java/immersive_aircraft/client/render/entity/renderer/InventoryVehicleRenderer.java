@@ -3,6 +3,7 @@ package immersive_aircraft.client.render.entity.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import immersive_aircraft.Main;
 import immersive_aircraft.WeaponRendererRegistry;
+import immersive_aircraft.client.render.entity.renderer.state.VehicleEntityRenderState;
 import immersive_aircraft.client.render.entity.renderer.utils.BBModelRenderer;
 import immersive_aircraft.client.render.entity.renderer.utils.ModelPartRenderHandler;
 import immersive_aircraft.client.render.entity.weaponRenderer.WeaponRenderer;
@@ -16,7 +17,9 @@ import immersive_aircraft.resources.bbmodel.BBObject;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.BannerItem;
 import net.minecraft.world.item.DyeColor;
@@ -26,15 +29,14 @@ import net.minecraft.world.level.block.entity.BannerPatternLayers;
 
 import java.util.List;
 
-public abstract class InventoryVehicleRenderer<T extends InventoryVehicleEntity> extends DyeableVehicleEntityRenderer<T> {
+public abstract class InventoryVehicleRenderer<T extends InventoryVehicleEntity, S extends VehicleEntityRenderState> extends DyeableVehicleEntityRenderer<T, S> {
     public InventoryVehicleRenderer(EntityRendererProvider.Context context) {
         super(context);
     }
 
     @Override
-    public void renderLocal(T entity, float yaw, float tickDelta, PoseStack matrixStack, PoseStack.Pose peek, MultiBufferSource vertexConsumerProvider, int light) {
-        super.renderLocal(entity, yaw, tickDelta, matrixStack, peek, vertexConsumerProvider, light);
-
+    public void renderLocal(T entity, VehicleEntityRenderState renderState, PoseStack matrixStack, PoseStack.Pose peek, MultiBufferSource vertexConsumerProvider, CameraRenderState cameraRenderState, float partialTick) {
+        super.renderLocal(entity, renderState, matrixStack, peek, vertexConsumerProvider, cameraRenderState, partialTick);
         //Render weapons
         LocalPlayer player = Minecraft.getInstance().player;
         for (List<Weapon> weapons : entity.getWeapons().values()) {
@@ -42,7 +44,7 @@ public abstract class InventoryVehicleRenderer<T extends InventoryVehicleEntity>
                 if (!weapon.getMount().blocking() || !Main.firstPersonGetter.isFirstPerson() || player == null || !entity.hasPassenger(player)) {
                     WeaponRenderer<Weapon> renderer = WeaponRendererRegistry.get(weapon);
                     if (renderer != null) {
-                        renderer.render(entity, weapon, matrixStack, vertexConsumerProvider, light, tickDelta);
+                        renderer.render(entity, weapon, matrixStack, vertexConsumerProvider, renderState.lightCoords, partialTick);
                     }
                 }
             }

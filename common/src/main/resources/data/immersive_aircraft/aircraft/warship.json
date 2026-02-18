@@ -1,11 +1,11 @@
 {
   "properties": {
     "fuel": 0.8,
-    "durability": 3.0,
+    "durability": 4.0,
     "stabilizer": 0.1,
     "yawSpeed": 2.5,
-    "engineSpeed": 0.035,
-    "verticalSpeed": 0.025,
+    "engineSpeed": 0.025,
+    "verticalSpeed": 0.015,
     "glideFactor": 0.0,
     "driftDrag": 0.01,
     "lift": 0.1,
@@ -27,11 +27,11 @@
     {"type": "upgrade", "x": 76, "y": 92},
     {"type": "weapon", "x": 102, "y": 92},
     {"type": "booster", "x": 128, "y": 92},
-    {"type": "boiler", "x": 40, "y": 40},
+    {"type": "boiler", "x": 45, "y": 40},
     {"type": "boiler", "x": 80, "y": 40},
-    {"type": "boiler", "x": 120, "y": 40},
-    {"type": "inventory", "x": -62, "y": 8, "cols": 3, "rows": 11, "boxed": true},
-    {"type": "inventory", "x": 186, "y": 8, "cols": 3, "rows": 11, "boxed": true}
+    {"type": "boiler", "x": 115, "y": 40},
+    {"type": "inventory", "x": 8, "y": 12, "cols": 1, "rows": 6},
+    {"type": "inventory", "x": 153, "y": 12, "cols": 1, "rows": 6}
   ],
   "weaponMounts": [
     {

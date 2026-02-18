@@ -1,10 +1,15 @@
 package immersive_aircraft.mixin.client;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import immersive_aircraft.entity.VehicleEntity;
 import net.minecraft.client.Camera;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.ItemInHandRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.world.entity.Entity;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
@@ -22,8 +27,10 @@ public abstract class GameRendererMixin {
     private Camera mainCamera;
 
     @Inject(method = "bobHurt(Lcom/mojang/blaze3d/vertex/PoseStack;F)V", at = @At("HEAD"), cancellable = false)
-    public void immersiveAircraft$renderWorld(PoseStack poseStack, float partialTicks, CallbackInfo ci) {
-        Entity entity = mainCamera.getEntity();
+    public void ia$renderWorld(PoseStack poseStack, float partialTicks, CallbackInfo ci) {
+        poseStack.pushPose(); // chekhov's gun loading
+
+        Entity entity = mainCamera.entity(); // TODO: refactor this?
         //noinspection ConstantValue
         if (entity != null && !mainCamera.isDetached() && entity.getRootVehicle() instanceof VehicleEntity vehicle) {
             // rotate camera
@@ -44,11 +51,19 @@ public abstract class GameRendererMixin {
             offset.rotate(quaternion);
 
             // apply camera offset
-            poseStack.mulPose(Axis.XP.rotationDegrees(mainCamera.getXRot()));
-            poseStack.mulPose(Axis.YP.rotationDegrees(mainCamera.getYRot() + 180.0f));
+            poseStack.mulPose(Axis.XP.rotationDegrees(mainCamera.xRot()));
+            poseStack.mulPose(Axis.YP.rotationDegrees(mainCamera.yRot() + 180.0f));
             poseStack.translate(offset.x(), offset.y() + eye, offset.z());
-            poseStack.mulPose(Axis.YP.rotationDegrees(-mainCamera.getYRot() - 180.0f));
-            poseStack.mulPose(Axis.XP.rotationDegrees(-mainCamera.getXRot()));
+            poseStack.mulPose(Axis.YP.rotationDegrees(-mainCamera.yRot() - 180.0f));
+            poseStack.mulPose(Axis.XP.rotationDegrees(-mainCamera.xRot()));
         }
+    }
+
+    @WrapOperation(method = "renderItemInHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/ItemInHandRenderer;renderHandsWithItems(FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/player/LocalPlayer;I)V"))
+    private void ia$fixHandPos(ItemInHandRenderer instance, float partialTick, PoseStack poseStack, SubmitNodeCollector nodeCollector, LocalPlayer player, int packedLight, Operation<Void> original) {
+        PoseStack.Pose peek = poseStack.last();
+        poseStack.popPose(); // chekhov's gun firing
+        original.call(instance, partialTick, poseStack, nodeCollector, player, packedLight);
+        poseStack.mulPose(peek.pose());
     }
 }

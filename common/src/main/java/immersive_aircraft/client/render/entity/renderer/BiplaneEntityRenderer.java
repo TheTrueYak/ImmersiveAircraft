@@ -1,19 +1,17 @@
 package immersive_aircraft.client.render.entity.renderer;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import immersive_aircraft.Main;
+import immersive_aircraft.client.render.entity.renderer.state.VehicleEntityRenderState;
 import immersive_aircraft.client.render.entity.renderer.utils.ModelPartRenderHandler;
 import immersive_aircraft.entity.AircraftEntity;
 import immersive_aircraft.entity.BiplaneEntity;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.resources.Identifier;
 
-public class BiplaneEntityRenderer<T extends BiplaneEntity> extends AircraftEntityRenderer<T> {
-    private static final ResourceLocation ID = Main.locate("biplane");
+public class BiplaneEntityRenderer<T extends BiplaneEntity, S extends VehicleEntityRenderState> extends AircraftEntityRenderer<T, S> {
+    private static final Identifier ID = Main.locate("biplane");
 
-    protected ResourceLocation getModelId() {
+    protected Identifier getModelId() {
         return ID;
     }
 
@@ -27,7 +25,7 @@ public class BiplaneEntityRenderer<T extends BiplaneEntity> extends AircraftEnti
     }
 
     @Override
-    protected ModelPartRenderHandler<T> getModel(AircraftEntity entity) {
+    protected ModelPartRenderHandler<T> getModel(T entity) {
         return model;
     }
 }

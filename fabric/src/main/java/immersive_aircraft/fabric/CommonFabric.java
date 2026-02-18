@@ -16,6 +16,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
 
 public final class CommonFabric implements ModInitializer {
+
     static {
         Main.MOD_LOADER = "fabric";
 
@@ -44,6 +45,10 @@ public final class CommonFabric implements ModInitializer {
 
         // Register event for syncing aircraft upgrades.
         ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS.register(this::onSyncDatapack);
+
+        ServerLifecycleEvents.SERVER_STARTED.register(minecraftServer -> {
+            Main.fuelRegistry = minecraftServer.fuelValues();
+        });
     }
 
     /**

@@ -2,6 +2,7 @@ package immersive_aircraft.network.s2c;
 
 import immersive_aircraft.Main;
 import immersive_aircraft.cobalt.network.Message;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -27,7 +28,7 @@ public class InventoryUpdateMessage extends Message {
         if (stack.isEmpty()) {
             this.stack = null;
         } else {
-            this.stack = stack.save(entity.registryAccess());
+            this.stack = ItemStack.CODEC.encodeStart(entity.registryAccess().createSerializationContext(NbtOps.INSTANCE), stack).getOrThrow();
         }
     }
 
@@ -58,6 +59,6 @@ public class InventoryUpdateMessage extends Message {
     }
 
     public ItemStack getStack(Entity entity) {
-        return this.stack == null ? ItemStack.EMPTY : ItemStack.parse(entity.registryAccess(), stack).orElse(ItemStack.EMPTY);
+        return this.stack == null ? ItemStack.EMPTY : ItemStack.CODEC.parse(entity.registryAccess().createSerializationContext(NbtOps.INSTANCE), stack).result().orElseGet(() -> ItemStack.EMPTY);
     }
 }

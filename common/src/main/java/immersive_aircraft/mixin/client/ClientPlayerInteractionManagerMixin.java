@@ -18,8 +18,7 @@ public class ClientPlayerInteractionManagerMixin {
 
     @Inject(method = "isServerControlledInventory()Z", at = @At("HEAD"), cancellable = true)
     public void hasRidingInventory(CallbackInfoReturnable<Boolean> cir) {
-        assert minecraft.player != null;
-        if (minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof InventoryVehicleEntity) {
+        if (minecraft.player != null && minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof InventoryVehicleEntity) {
             cir.setReturnValue(true);
         }
     }

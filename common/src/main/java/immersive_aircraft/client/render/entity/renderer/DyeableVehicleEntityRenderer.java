@@ -2,6 +2,7 @@ package immersive_aircraft.client.render.entity.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import immersive_aircraft.client.ColorUtils;
+import immersive_aircraft.client.render.entity.renderer.state.VehicleEntityRenderState;
 import immersive_aircraft.entity.DyeableVehicleEntity;
 import immersive_aircraft.resources.bbmodel.BBModel;
 import immersive_aircraft.resources.bbmodel.BBObject;
@@ -10,7 +11,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 
 import static immersive_aircraft.client.render.entity.renderer.utils.BBModelRenderer.renderObjectInner;
 
-public abstract class DyeableVehicleEntityRenderer<T extends DyeableVehicleEntity> extends VehicleEntityRenderer<T> {
+public abstract class DyeableVehicleEntityRenderer<T extends DyeableVehicleEntity, S extends VehicleEntityRenderState> extends VehicleEntityRenderer<T, S> {
     public DyeableVehicleEntityRenderer(EntityRendererProvider.Context context) {
         super(context);
     }

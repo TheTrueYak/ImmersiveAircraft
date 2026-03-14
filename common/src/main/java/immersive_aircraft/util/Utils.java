@@ -8,12 +8,16 @@ import immersive_aircraft.cobalt.registration.CobaltFuelRegistry;
 import immersive_aircraft.config.Config;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.FuelValues;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 import java.util.Map;
 
 public class Utils {
+    public static FuelValues fuelRegistry;
+
     public static double cosNoise(double time) {
         return cosNoise(time, 5);
     }
@@ -41,7 +45,7 @@ public class Utils {
 
         // Vanilla fuel
         if (Config.getInstance().acceptVanillaFuel) {
-            int fuelTime = CobaltFuelRegistry.INSTANCE.get(fuel);
+            int fuelTime = fuelRegistry.burnDuration(fuel);
             if (fuelTime > 0) {
                 return fuelTime;
             }

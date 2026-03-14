@@ -1,9 +1,11 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "create:mechanical_crafting",
   "pattern": [
-    " H ",
-    "HEP",
-    " H "
+    "   S ",
+    "S  S ",
+    "HH_EP",
+    "S  S ",
+    "   S "
   ],
   "key": {
     "H": [
@@ -20,9 +22,20 @@
       {
         "item": "immersive_aircraft:propeller"
       }
+    ],
+    "S": [
+      {
+        "item": "immersive_aircraft:sail"
+      }
+    ],
+    "_": [
+      {
+        "tag": "create:seats"
+      }
     ]
   },
   "result": {
     "id": "immersive_aircraft:biplane"
-  }
+  },
+  "accept_mirrored": true
 }

@@ -1,19 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "  C",
-    "ICI",
-    "C  "
+    "IPI"
   ],
   "key": {
-    "C": [
+    "P": [
       {
-        "item": "minecraft:copper_ingot"
+        "item": "create:fluid_pipe"
       }
     ],
     "I": [
       {
-        "item": "minecraft:iron_ingot"
+        "item": "create:iron_sheet"
       }
     ]
   },

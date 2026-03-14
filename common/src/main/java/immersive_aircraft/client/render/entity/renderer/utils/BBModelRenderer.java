@@ -10,7 +10,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
-import net.minecraft.client.renderer.special.ShieldSpecialRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.util.ARGB;
@@ -47,6 +46,7 @@ public class BBModelRenderer {
             if (animation.hasAnimator(object.uuid)) {
                 Vector3f position = animation.sample(object.uuid, BBAnimator.Channel.POSITION, time);
                 position.mul(1.0f / 16.0f);
+
                 matrixStack.translate(position.x(), position.y(), position.z());
 
                 Vector3f rotation = animation.sample(object.uuid, BBAnimator.Channel.ROTATION, time);
@@ -151,8 +151,6 @@ public class BBModelRenderer {
                 //(source, container, face) -> vertexConsumers.getBuffer(RenderTypes.entityNoOutline(material.texture())));
                 //(source, container, face) -> source.getBuffer(RenderTypes.entityNoOutline(material.texture())));
     }
-
-    ShieldSpecialRenderer
 
     public static void renderSailObject(BBMesh cube, PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int light, float time, float red, float green, float blue, float alpha) {
         renderSailObject(cube, matrixStack, vertexConsumerProvider, light, time, red, green, blue, alpha, 0.025f, 0.0f);

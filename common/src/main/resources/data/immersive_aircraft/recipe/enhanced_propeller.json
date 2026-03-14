@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CC ",
-    " P ",
-    " CC"
+    " B ",
+    "BPB",
+    " B "
   ],
   "key": {
-    "C": [
+    "B": [
       {
-        "item": "minecraft:copper_ingot"
+        "item": "create:brass_sheet"
       }
     ],
     "P": [
       {
-        "item": "immersive_aircraft:propeller"
+        "item": "create:propeller"
       }
     ]
   },

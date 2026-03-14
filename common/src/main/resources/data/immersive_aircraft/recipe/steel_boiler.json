@@ -1,24 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CCC",
-    "CBC",
-    "CFC"
+    "IFI"
   ],
   "key": {
-    "C": [
+    "I": [
       {
-        "item": "minecraft:iron_ingot"
+        "item": "create:iron_sheet"
       }
     ],
     "F": [
       {
-        "item": "minecraft:blast_furnace"
-      }
-    ],
-    "B": [
-      {
-        "item": "immersive_aircraft:boiler"
+        "item": "create:fluid_tank"
       }
     ]
   },

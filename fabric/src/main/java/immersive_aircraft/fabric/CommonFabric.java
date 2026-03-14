@@ -7,6 +7,7 @@ import immersive_aircraft.fabric.cobalt.registration.CobaltFuelRegistryImpl;
 import immersive_aircraft.fabric.cobalt.registration.RegistrationImpl;
 import immersive_aircraft.network.s2c.AircraftDataMessage;
 import immersive_aircraft.network.s2c.VehicleUpgradesMessage;
+import immersive_aircraft.util.Utils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -47,7 +48,7 @@ public final class CommonFabric implements ModInitializer {
         ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS.register(this::onSyncDatapack);
 
         ServerLifecycleEvents.SERVER_STARTED.register(minecraftServer -> {
-            Main.fuelRegistry = minecraftServer.fuelValues();
+            Utils.fuelRegistry = minecraftServer.fuelValues();
         });
     }
 

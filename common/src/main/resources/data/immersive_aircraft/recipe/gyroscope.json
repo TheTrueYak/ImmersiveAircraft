@@ -1,9 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "RCR",
-    "   ",
-    "   "
+    "E",
+    "C"
   ],
   "key": {
     "C": [
@@ -11,9 +10,9 @@
         "item": "minecraft:compass"
       }
     ],
-    "R": [
+    "E": [
       {
-        "item": "minecraft:comparator"
+        "item": "create:electron_tube"
       }
     ]
   },

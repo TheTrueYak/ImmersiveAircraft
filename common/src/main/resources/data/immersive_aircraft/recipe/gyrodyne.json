@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " S ",
-    "HPH",
-    " S "
+    " P ",
+    "SES",
+    "H_H"
   ],
   "key": {
     "S": [
@@ -19,6 +19,16 @@
     "P": [
       {
         "item": "immersive_aircraft:propeller"
+      }
+    ],
+    "E": [
+      {
+        "item": "create:precision_mechanism"
+      }
+    ],
+    "_": [
+      {
+        "tag": "create:seats"
       }
     ]
   },

@@ -28,11 +28,10 @@ public abstract class GameRendererMixin {
 
     @Inject(method = "bobHurt(Lcom/mojang/blaze3d/vertex/PoseStack;F)V", at = @At("HEAD"), cancellable = false)
     public void ia$renderWorld(PoseStack poseStack, float partialTicks, CallbackInfo ci) {
-        poseStack.pushPose(); // chekhov's gun loading
-
-        Entity entity = mainCamera.entity(); // TODO: refactor this?
+        Entity entity = mainCamera.entity(); // TODO: refactor this to get rid of the weird loading thing?
         //noinspection ConstantValue
         if (entity != null && !mainCamera.isDetached() && entity.getRootVehicle() instanceof VehicleEntity vehicle) {
+            poseStack.pushPose(); // chekhov's gun loading
             // rotate camera
             if (vehicle.adaptPlayerRotation) {
                 poseStack.mulPose(Axis.ZP.rotationDegrees(vehicle.getRoll(partialTicks)));
@@ -61,9 +60,13 @@ public abstract class GameRendererMixin {
 
     @WrapOperation(method = "renderItemInHand", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/ItemInHandRenderer;renderHandsWithItems(FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/player/LocalPlayer;I)V"))
     private void ia$fixHandPos(ItemInHandRenderer instance, float partialTick, PoseStack poseStack, SubmitNodeCollector nodeCollector, LocalPlayer player, int packedLight, Operation<Void> original) {
-        PoseStack.Pose peek = poseStack.last();
-        poseStack.popPose(); // chekhov's gun firing
-        original.call(instance, partialTick, poseStack, nodeCollector, player, packedLight);
-        poseStack.mulPose(peek.pose());
+        Entity entity = mainCamera.entity();
+        if (entity != null && !mainCamera.isDetached() && entity.getRootVehicle() instanceof VehicleEntity vehicle) {
+            PoseStack.Pose peek = poseStack.last();
+            poseStack.popPose(); // chekhov's gun firing
+            original.call(instance, partialTick, poseStack, nodeCollector, player, packedLight);
+            poseStack.mulPose(peek.pose());
+        }
+        else original.call(instance, partialTick, poseStack, nodeCollector, player, packedLight);
     }
 }

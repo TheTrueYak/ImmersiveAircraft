@@ -1,14 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "II ",
     " I ",
-    " II"
+    "IPI",
+    " I "
   ],
   "key": {
     "I": [
       {
-        "item": "minecraft:iron_ingot"
+        "item": "create:iron_sheet"
+      }
+    ],
+    "P": [
+      {
+        "item": "create:propeller"
       }
     ]
   },

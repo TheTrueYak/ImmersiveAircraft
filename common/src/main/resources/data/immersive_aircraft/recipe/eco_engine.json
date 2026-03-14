@@ -1,29 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CNC",
-    "NEN",
-    "RRR"
+    "IWI",
+    "CEC"
   ],
   "key": {
     "C": [
       {
-        "item": "minecraft:slime_ball"
+        "item": "create:copper_sheet"
       }
     ],
-    "R": [
+    "W": [
       {
-        "item": "minecraft:brick"
+        "item": "minecraft:water_bucket"
       }
     ],
-    "N": [
+    "I": [
       {
-        "item": "minecraft:gold_ingot"
+        "item": "create:iron_sheet"
       }
     ],
     "E": [
       {
-        "item": "immersive_aircraft:engine"
+        "item": "immersive_aircraft:boiler"
       }
     ]
   },

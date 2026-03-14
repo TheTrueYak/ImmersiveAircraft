@@ -1,19 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CCS",
-    "CCS",
-    "CCS"
+    "SSS",
+    "SSS"
   ],
   "key": {
     "S": [
       {
-        "item": "minecraft:string"
-      }
-    ],
-    "C": [
-      {
-        "item": "minecraft:white_carpet"
+        "item": "create:white_sail"
       }
     ]
   },

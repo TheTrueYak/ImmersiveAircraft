@@ -27,11 +27,15 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extend
 
     @Inject(method = "extractRenderState(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/client/renderer/entity/state/LivingEntityRenderState;F)V", at = @At("HEAD"))
     private void ia$modifyRenderState(T livingEntity, S livingEntityRenderState, float f, CallbackInfo ci) {
+        float xRot = 0, roll = 0;
         if (livingEntity.getRootVehicle() instanceof VehicleEntity vehicleEntity /*&& !(livingEntity.getStringUUID().equals(Minecraft.getInstance().player.getStringUUID()) && Minecraft.getInstance().options.getCameraType().isFirstPerson())*/) {
             //float partialTick = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(true);
-            ((LivingEntityRenderStateInjector) livingEntityRenderState).immersiveAircraft$setlerpedXRot(Mth.rotLerp(f, vehicleEntity.xRotO, vehicleEntity.getXRot(f)));
-            ((LivingEntityRenderStateInjector) livingEntityRenderState).immersiveAircraft$setlerpedRoll(Mth.rotLerp(f, vehicleEntity.prevRoll, vehicleEntity.getRoll(f)));
+            xRot = Mth.rotLerp(f, vehicleEntity.xRotO, vehicleEntity.getXRot(f));
+            roll = Mth.rotLerp(f, vehicleEntity.prevRoll, vehicleEntity.getRoll(f));
         }
+
+        //((LivingEntityRenderStateInjector) livingEntityRenderState).immersiveAircraft$setlerpedXRot(xRot);
+        //((LivingEntityRenderStateInjector) livingEntityRenderState).immersiveAircraft$setlerpedRoll(roll);
     }
 
     @Inject(method = "setupRotations", at = @At("TAIL"))
@@ -39,8 +43,8 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, S extend
         float xRot = ((LivingEntityRenderStateInjector) renderState).immersiveAircraft$getLerpedXRot();
         float roll = ((LivingEntityRenderStateInjector) renderState).immersiveAircraft$getLerpedRoll();
         if (xRot != 0 && roll != 0) {
-            poseStack.mulPose(Axis.XP.rotationDegrees(-xRot));
-            poseStack.mulPose(Axis.ZP.rotationDegrees(-roll));
+            //poseStack.mulPose(Axis.XP.rotationDegrees(-xRot));
+            //poseStack.mulPose(Axis.ZP.rotationDegrees(-roll));
         }
     }
 }

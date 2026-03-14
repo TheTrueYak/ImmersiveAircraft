@@ -1,9 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "III",
-    "HHH",
-    "III"
+    "IHI"
   ],
   "key": {
     "H": [
@@ -13,7 +11,7 @@
     ],
     "I": [
       {
-        "item": "minecraft:iron_ingot"
+        "item": "create:iron_sheet"
       }
     ]
   },

@@ -1,14 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "LLL",
-    "III",
-    "LLL"
+    "LIL",
+    "LIL"
   ],
   "key": {
     "L": [
       {
-        "tag": "minecraft:logs"
+        "item": "create:andesite_casing"
       }
     ],
     "I": [

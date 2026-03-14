@@ -1,29 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " C ",
-    "PFP",
-    "CIC"
+    "BPB",
+    "SES"
   ],
   "key": {
-    "F": [
+    "P": [
       {
-        "item": "minecraft:blast_furnace"
+        "item": "create:precision_mechanism"
       }
     ],
-    "C": [
-      {
-        "item": "minecraft:cobblestone"
-      }
-    ],
-    "I": [
+    "E": [
       {
         "item": "immersive_aircraft:boiler"
       }
     ],
-    "P": [
+    "B": [
       {
-        "item": "minecraft:piston"
+        "item": "create:brass_sheet"
+      }
+    ],
+    "S": [
+      {
+        "item": "create:sturdy_sheet"
       }
     ]
   },

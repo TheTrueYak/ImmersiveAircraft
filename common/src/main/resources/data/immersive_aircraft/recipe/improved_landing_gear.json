@@ -1,19 +1,23 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " II",
-    "CCI",
-    "CC "
+    "SI",
+    "B "
   ],
   "key": {
-    "C": [
+    "B": [
       {
-        "item": "minecraft:coal"
+        "item": "create:belt_connector"
       }
     ],
     "I": [
       {
         "item": "minecraft:iron_ingot"
+      }
+    ],
+    "S": [
+      {
+        "item": "create:iron_sheet"
       }
     ]
   },

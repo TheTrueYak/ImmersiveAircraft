@@ -1,0 +1,50 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "SSSSSP",
+    "~   ~ ",
+    "HE_HNP",
+    " HEHP "
+  ],
+  "key": {
+    "H": [
+      {
+        "item": "immersive_aircraft:hull"
+      }
+    ],
+    "E": [
+      {
+        "item": "immersive_aircraft:engine"
+      }
+    ],
+	"N": [
+      {
+        "item": "immersive_aircraft:nether_engine"
+      }
+    ],
+    "P": [
+      {
+        "item": "create:propeller"
+      }
+    ],
+    "S": [
+      {
+        "item": "immersive_aircraft:sail"
+      }
+    ],
+    "~": [
+      {
+        "item": "minecraft:chain"
+      }
+    ],
+    "_": [
+      {
+        "tag": "create:seats"
+      }
+    ]
+  },
+  "result": {
+    "id": "immersive_aircraft:warship"
+  },
+  "accept_mirrored": true
+}

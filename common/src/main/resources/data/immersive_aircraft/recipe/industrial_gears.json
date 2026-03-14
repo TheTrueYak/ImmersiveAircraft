@@ -1,24 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " II",
-    "CLI",
-    "CC "
+    "ICI"
   ],
   "key": {
     "C": [
       {
-        "item": "minecraft:copper_ingot"
+        "item": "create:cogwheel"
       }
     ],
     "I": [
       {
-        "item": "minecraft:iron_ingot"
-      }
-    ],
-    "L": [
-      {
-        "item": "minecraft:lever"
+        "item": "create:iron_sheet"
       }
     ]
   },

@@ -1,19 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CCC",
-    "C C",
-    "CFC"
+    "S",
+    "N",
+    "I"
   ],
   "key": {
-    "C": [
+    "I": [
       {
-        "item": "minecraft:copper_ingot"
+        "item": "create:blaze_burner"
       }
     ],
-    "F": [
+    "S": [
       {
-        "item": "minecraft:furnace"
+        "item": "create:steam_engine"
+      }
+    ],
+    "N": [
+      {
+        "item": "create:fluid_tank"
       }
     ]
   },

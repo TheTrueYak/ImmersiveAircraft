@@ -1,34 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CNC",
-    "BEB",
-    "RRR"
+    "ILI",
+    "SES"
   ],
   "key": {
-    "C": [
+    "S": [
       {
-        "item": "minecraft:magma_cream"
+        "item": "create:sturdy_sheet"
       }
     ],
-    "B": [
+    "L": [
       {
-        "item": "minecraft:blaze_rod"
+        "item": "minecraft:lava_bucket"
       }
     ],
-    "R": [
+    "I": [
       {
-        "item": "minecraft:nether_brick"
-      }
-    ],
-    "N": [
-      {
-        "item": "minecraft:netherite_ingot"
+        "item": "create:iron_sheet"
       }
     ],
     "E": [
       {
-        "item": "immersive_aircraft:engine"
+        "item": "immersive_aircraft:boiler"
       }
     ]
   },

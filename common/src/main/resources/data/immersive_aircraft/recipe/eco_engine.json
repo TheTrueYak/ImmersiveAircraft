@@ -5,26 +5,10 @@
     "CEC"
   ],
   "key": {
-    "C": [
-      {
-        "item": "create:copper_sheet"
-      }
-    ],
-    "W": [
-      {
-        "item": "minecraft:water_bucket"
-      }
-    ],
-    "I": [
-      {
-        "item": "create:iron_sheet"
-      }
-    ],
-    "E": [
-      {
-        "item": "immersive_aircraft:boiler"
-      }
-    ]
+    "C": "create:copper_sheet",
+    "W": "minecraft:water_bucket",
+    "I": "create:iron_sheet",
+    "E": "immersive_aircraft:boiler"
   },
   "result": {
     "id": "immersive_aircraft:eco_engine"

@@ -8,41 +8,13 @@
     "B   SP"
   ],
   "key": {
-    "H": [
-      {
-        "item": "immersive_aircraft:hull"
-      }
-    ],
-    "E": [
-      {
-        "item": "immersive_aircraft:engine"
-      }
-    ],
-    "P": [
-      {
-        "item": "immersive_aircraft:propeller"
-      }
-    ],
-	"B": [
-      {
-        "item": "minecraft:bamboo_block"
-      }
-    ],
-    "S": [
-      {
-        "item": "immersive_aircraft:sail"
-      }
-    ],
-	"L": [
-      {
-        "item": "immersive_aircraft:biplane"
-      }
-    ],
-    "_": [
-      {
-        "tag": "create:seats"
-      }
-    ]
+    "H": "immersive_aircraft:hull",
+    "E": "immersive_aircraft:engine",
+    "P": "immersive_aircraft:propeller",
+	"B": "minecraft:bamboo_block",
+    "S": "immersive_aircraft:sail",
+	"L": "immersive_aircraft:biplane",
+    "_": "create:seats"
   },
   "result": {
     "id": "immersive_aircraft:bamboo_hopper"

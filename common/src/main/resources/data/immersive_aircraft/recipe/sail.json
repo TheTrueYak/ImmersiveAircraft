@@ -5,11 +5,7 @@
     "SSS"
   ],
   "key": {
-    "S": [
-      {
-        "item": "create:white_sail"
-      }
-    ]
+    "S": "create:white_sail"
   },
   "result": {
     "id": "immersive_aircraft:sail"

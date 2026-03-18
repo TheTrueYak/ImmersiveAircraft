@@ -5,26 +5,10 @@
     "SES"
   ],
   "key": {
-    "P": [
-      {
-        "item": "create:precision_mechanism"
-      }
-    ],
-    "E": [
-      {
-        "item": "immersive_aircraft:boiler"
-      }
-    ],
-    "B": [
-      {
-        "item": "create:brass_sheet"
-      }
-    ],
-    "S": [
-      {
-        "item": "create:sturdy_sheet"
-      }
-    ]
+    "P": "create:precision_mechanism",
+    "E": "immersive_aircraft:boiler",
+    "B": "create:brass_sheet",
+    "S": "create:sturdy_sheet"
   },
   "result": {
     "id": "immersive_aircraft:engine"

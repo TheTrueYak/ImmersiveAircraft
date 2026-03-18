@@ -4,16 +4,8 @@
     "IPI"
   ],
   "key": {
-    "P": [
-      {
-        "item": "create:fluid_pipe"
-      }
-    ],
-    "I": [
-      {
-        "item": "create:iron_sheet"
-      }
-    ]
+    "P": "create:fluid_pipe",
+    "I": "create:iron_sheet"
   },
   "result": {
     "id": "immersive_aircraft:sturdy_pipes"

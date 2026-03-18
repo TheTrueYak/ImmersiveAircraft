@@ -7,36 +7,12 @@
     " HHH "
   ],
   "key": {
-    "H": [
-      {
-        "item": "immersive_aircraft:hull"
-      }
-    ],
-    "E": [
-      {
-        "item": "immersive_aircraft:engine"
-      }
-    ],
-    "P": [
-      {
-        "item": "create:propeller"
-      }
-    ],
-    "S": [
-      {
-        "item": "immersive_aircraft:sail"
-      }
-    ],
-    "~": [
-      {
-        "item": "minecraft:string"
-      }
-    ],
-    "_": [
-      {
-        "tag": "create:seats"
-      }
-    ]
+    "H": "immersive_aircraft:hull",
+    "E": "immersive_aircraft:engine",
+    "P": "create:propeller",
+    "S": "immersive_aircraft:sail",
+    "~": "minecraft:string",
+    "_": "#create:seats"
   },
   "result": {
     "id": "immersive_aircraft:airship"

@@ -112,6 +112,12 @@ public abstract class VehicleEntity extends Entity {
     public boolean adaptPlayerRotation = true;
     private int drowning;
 
+    //protected final InterpolationHandler interpolator = new InterpolationHandler(this, 3);
+
+    /*public InterpolationHandler getInterpolator() {
+        return this.interpolator;
+    }*/
+
     public float getRoll() {
         return roll;
     }
@@ -445,6 +451,8 @@ public abstract class VehicleEntity extends Entity {
             pressingInterpolatedY.update(movementY);
             pressingInterpolatedZ.update(movementZ);
         }
+
+        //this.interpolator.interpolate();
 
         tickDamageParticles();
 

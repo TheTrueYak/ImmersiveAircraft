@@ -5,7 +5,7 @@
     "tints": [
       {
         "type": "dye",
-        "default": -138
+        "default": -1
       }
     ]
   }

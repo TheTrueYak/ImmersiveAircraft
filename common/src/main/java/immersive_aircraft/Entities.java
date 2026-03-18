@@ -58,6 +58,7 @@ public interface Entities {
             .of(QuadrocopterEntity::new, MobCategory.MISC)
             .sized(1.5f, 0.5f)
             .clientTrackingRange(10)
+            .updateInterval(2)
             .fireImmune()
     );
 

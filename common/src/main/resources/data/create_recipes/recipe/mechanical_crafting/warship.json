@@ -7,41 +7,13 @@
     " HEHP "
   ],
   "key": {
-    "H": [
-      {
-        "item": "immersive_aircraft:hull"
-      }
-    ],
-    "E": [
-      {
-        "item": "immersive_aircraft:engine"
-      }
-    ],
-	"N": [
-      {
-        "item": "immersive_aircraft:nether_engine"
-      }
-    ],
-    "P": [
-      {
-        "item": "create:propeller"
-      }
-    ],
-    "S": [
-      {
-        "item": "immersive_aircraft:sail"
-      }
-    ],
-    "~": [
-      {
-        "item": "minecraft:chain"
-      }
-    ],
-    "_": [
-      {
-        "tag": "create:seats"
-      }
-    ]
+    "H": "immersive_aircraft:hull",
+    "E": "immersive_aircraft:engine",
+	"N": "immersive_aircraft:nether_engine",
+    "P": "create:propeller",
+    "S": "immersive_aircraft:sail",
+    "~": "minecraft:chain",
+    "_": "#create:seats"
   },
   "result": {
     "id": "immersive_aircraft:warship"

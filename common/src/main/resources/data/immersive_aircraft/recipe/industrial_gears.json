@@ -4,16 +4,8 @@
     "ICI"
   ],
   "key": {
-    "C": [
-      {
-        "item": "create:cogwheel"
-      }
-    ],
-    "I": [
-      {
-        "item": "create:iron_sheet"
-      }
-    ]
+    "C": "create:cogwheel",
+    "I": "create:iron_sheet"
   },
   "result": {
     "id": "immersive_aircraft:industrial_gears"

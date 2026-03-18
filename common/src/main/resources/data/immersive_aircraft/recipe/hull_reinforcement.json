@@ -4,16 +4,8 @@
     "IHI"
   ],
   "key": {
-    "H": [
-      {
-        "item": "immersive_aircraft:hull"
-      }
-    ],
-    "I": [
-      {
-        "item": "create:iron_sheet"
-      }
-    ]
+    "H": "immersive_aircraft:hull",
+    "I": "create:iron_sheet"
   },
   "result": {
     "id": "immersive_aircraft:hull_reinforcement"

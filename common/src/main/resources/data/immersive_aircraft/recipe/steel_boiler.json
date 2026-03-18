@@ -4,16 +4,8 @@
     "IFI"
   ],
   "key": {
-    "I": [
-      {
-        "item": "create:iron_sheet"
-      }
-    ],
-    "F": [
-      {
-        "item": "create:fluid_tank"
-      }
-    ]
+    "I": "create:iron_sheet",
+    "F": "create:fluid_tank"
   },
   "result": {
     "id": "immersive_aircraft:steel_boiler"
